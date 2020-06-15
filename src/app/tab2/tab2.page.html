@@ -1,17 +1,46 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+  <ion-toolbar class="center">
     <ion-title>
-      Tab 2
+      Países
     </ion-title>
+  </ion-toolbar>
+    <ion-searchbar placeholder='Procurar país'></ion-searchbar>
+    Filtro<br/>
+      <ion-button size="small" color="dark" (click)='highDeaths()'>Mortes</ion-button>
+      <ion-button size="small" color="dark" (click)='highConfirmed()'>Confirmados</ion-button>
+      <ion-button size="small" color="dark" (click)='resetList()'>Limpar</ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="false">
+  
+  <ion-list>
+    <ion-card *ngFor='let country of countries'>
+      <ion-item>
+        <ion-label>{{ country?.Country }}</ion-label>
+      </ion-item>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+      <ion-card-content>
+        <table>
+          <tr>
+            <td colspan='2'> Casos Totais: <ion-text color='secondary'>{{ country?.TotalConfirmed | number }}</ion-text></td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>Novos casos: <ion-text color='warning'>{{ country?.NewConfirmed | number}}</ion-text></td>
+          </tr>
+          <tr>
+            <td colspan='2'> Total recuperado: <ion-text color='success'>{{ country?.TotalRecovered | number }}</ion-text></td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td> Novos recuperados: <ion-text color='success'>{{ country?.NewRecovered | number }}</ion-text></td>
+            
+          </tr>
+          <tr>
+            <td colspan='2'> Mortes totais: <ion-text color='secondary'>{{ country?.TotalDeaths | number }}</ion-text></td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td> Novas mortes: <ion-text color='danger'>{{ country?.NewDeaths | number }}</ion-text></td>
+          </tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>

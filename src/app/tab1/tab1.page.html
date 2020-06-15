@@ -1,17 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      COVID19 - Sumario
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-card-content class="masters">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Casos pelo mundo</ion-card-title>
+    </ion-card-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
-</ion-content>
+    <ion-card-content>
+        <ion-label>
+          Novos casos confirmados: {{ global?.NewConfirmed | number}}<br/>
+          Novas mortes confirmadas: {{ global?.NewDeaths | number}}<br/>
+          Total de casos confirmados: {{ global?.TotalConfirmed | number}}<br/>
+          Total de mortes confirmadas: {{ global?.TotalDeaths | number }}<br/>
+        </ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-card-content>
+<ion-label>
+  <canvas #barChart></canvas>
+  *NC - Novos Casos<br/>
+  *CT - Casos Totais
+</ion-label>
+
